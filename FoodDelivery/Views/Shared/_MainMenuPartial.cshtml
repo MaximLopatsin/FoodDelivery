@@ -1,0 +1,20 @@
+﻿<ul class="nav navbar-nav mr-auto">
+    @if (Request.IsAuthenticated)
+    {
+        if (@System.Web.HttpContext.Current.User.IsInRole("user"))
+        {
+            <li>
+                @Html.ActionLink("Заведения", "Index", "Institution", new { area = "" }, new { @class = "navbar-brand", id = "InstitutionMenu" })
+            </li>
+            <li>
+                @Html.ActionLink("Блюда", "Index", "Menu", new { area = "" }, new { @class = "navbar-brand", id = "InstitutionMenu" })
+            </li>
+        }
+        if (System.Web.HttpContext.Current.User.IsInRole("dispatcher"))
+        {
+            <li>
+                @Html.ActionLink("Доставка", "NewOrders", "Order", new { area = "" }, new { @class = "navbar-brand", id = "InstitutionMenu" })
+            </li>
+        }
+    }
+</ul>

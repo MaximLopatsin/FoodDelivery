@@ -1,0 +1,28 @@
+﻿@model BLL.Dto.Menu
+
+@{
+    ViewBag.Title = "DetailsMenu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetailsMenu</h2>
+
+<div>
+    <h4>Menu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+    </dl>
+</div>
+@{
+    Html.RenderAction("IndexMeal");
+}
+<p>
+    @Html.ActionLink("Редактировать", "EditMenu", new { id = Model.Id }) |
+    @Html.ActionLink("Назад", "Index")
+</p>
