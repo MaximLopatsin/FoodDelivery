@@ -41,7 +41,6 @@ namespace AutoTests.Pages
             _driver.Dispose();
         }
 
-        // We haven't to change data in database. all test should be independent
         [After]
         public static void RestoreDatabaseFromBackUp()
         {

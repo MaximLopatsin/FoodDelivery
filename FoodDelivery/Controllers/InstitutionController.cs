@@ -124,13 +124,23 @@ namespace FoodDelivery.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateMeal(Meal venue, List<Ingredient> ingredients)
+        public async Task<ActionResult> CreateMeal(Meal entity, List<Ingredient> ingredients)
         {
-            var meal = await _mealService.CreateMealAsync(venue, ingredients);
-            meal.MenuId = venue.MenuId;
-            meal.Price = venue.Price;
+            if (ingredients is null || !ingredients.Any())
+            {
+                ModelState.AddModelError(string.Empty, "Должен быть хотя бы 1 ингредиент");
+                entity.Ingredients = new List<Ingredient>();
+                return View(entity);
+            }
+
+            var meal = await _mealService.CreateMealAsync(entity, ingredients);
+
+            meal.MenuId = entity.MenuId;
+            meal.Price = entity.Price;
+
             await _menuService.AddMealToMenuAsync(meal);
-            return RedirectToAction("DetailsMenu", new { id = venue.MenuId });
+
+            return RedirectToAction("DetailsMenu", new { id = entity.MenuId });
         }
 
         public ActionResult AddIngredient()
@@ -151,9 +161,92 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public async Task<ActionResult> DetailsMeal(int? id)
         {
-            var model = await _menuService.GetMealsByMenuIdAsync(id.Value);
+            var model = await _mealService.GetMealByIdAsync(id.GetValueOrDefault());
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var institution = _institutionService.GetInstitutions().FirstOrDefault(x => x.Id == id.Value);
+            return View(institution);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(Institution institution)
+        {
+            await _institutionService.UpdateInstitutionAsync(institution);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var institution = _institutionService.GetInstitutions().FirstOrDefault(x => x.Id == id.Value);
+            return View(institution);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteCommand(int? id)
+        {
+            var institution = _institutionService.GetInstitutions().FirstOrDefault(x => x.Id == id.Value);
+            await _institutionService.DeleteInstitutionAsync(institution);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> DeleteMenu(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var menu = await _menuService.GetMenuByIdAsync(id.GetValueOrDefault());
+            return View(menu);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteMenuCommand(int? id)
+        {
+            var menu = await _menuService.GetMenuByIdAsync(id.GetValueOrDefault());
+            await _menuService.DeleteMenuAsync(menu);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> DeleteMeal(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var meal = await _mealService.GetMealByIdAsync(id.GetValueOrDefault());
+            return View(meal);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DeleteMealCommand(int? id)
+        {
+            var meal = await _mealService.GetMealByIdAsync(id.GetValueOrDefault());
+            await _mealService.DeleteMealAsync(meal);
+
+            return RedirectToAction(nameof(Index));
         }
 
         private void SelectedProduct()

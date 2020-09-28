@@ -178,8 +178,12 @@
   <ItemGroup>
     <Compile Include="Pages\AbstractPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\Institution\InstitutionDetailsPage.cs" />
+    <Compile Include="Pages\Institution\InstitutionCreatePage.cs" />
+    <Compile Include="Pages\Institution\InstitutionPage.cs" />
     <Compile Include="Pages\PageFactory.cs" />
     <Compile Include="Pages\SignInPage.cs" />
+    <Compile Include="Steps\InstitutionSteps.cs" />
     <Compile Include="Steps\LoginSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\BackupRestore.cs" />
@@ -188,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\Institution.feature" />
     <None Include="Features\Login.feature" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -202,10 +207,10 @@
     <Error Condition="!Exists('packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.props'))" />
     <Error Condition="!Exists('packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.targets'))" />
     <Error Condition="!Exists('packages\Microsoft.SqlServer.SqlManagementObjects.150.18147.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.SqlServer.SqlManagementObjects.150.18147.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets'))" />
-    <Error Condition="!Exists('packages\Selenium.WebDriver.ChromeDriver.79.0.3945.3600\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.ChromeDriver.79.0.3945.3600\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
   <Import Project="packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.targets" Condition="Exists('packages\SpecFlow.NUnit.3.0.225\build\SpecFlow.NUnit.targets')" />
   <Import Project="packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('packages\SpecFlow.Tools.MsBuild.Generation.3.0.225\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
   <Import Project="packages\Microsoft.SqlServer.SqlManagementObjects.150.18147.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets" Condition="Exists('packages\Microsoft.SqlServer.SqlManagementObjects.150.18147.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets')" />
-  <Import Project="packages\Selenium.WebDriver.ChromeDriver.79.0.3945.3600\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.ChromeDriver.79.0.3945.3600\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('packages\Selenium.WebDriver.ChromeDriver.85.0.4183.8700\build\Selenium.WebDriver.ChromeDriver.targets')" />
 </Project>

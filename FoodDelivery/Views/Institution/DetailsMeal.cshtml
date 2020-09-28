@@ -1,7 +1,7 @@
 ﻿@model BLL.Dto.Meal
 
 @{
-    ViewBag.Title = "DetailsMeal";
+    ViewBag.Title = "Подробности блюда";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,17 +16,22 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id })
-    @Html.ActionLink("Редактировать", "Index")
-</p>
+<h4>Ингредиенты</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredients[0].Name)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Ingredients)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+    }
+</table>

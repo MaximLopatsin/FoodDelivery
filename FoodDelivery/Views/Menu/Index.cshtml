@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<BLL.Dto.MenuMeal>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Блюда";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Создать", "Create")
 </p>
 <table class="table">
     <tr>
@@ -37,8 +37,8 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-                @Html.ActionLink("Add to cart", "AddMealForOrder", "Order", new { menuMealId = item.Id }, null)
+                @Html.ActionLink("Детали", "Details", new { id = item.Id })
+                @Html.ActionLink("Добавить в корзину", "AddMealForOrder", "Order", new { menuMealId = item.Id }, null)
             </td>
         </tr>
     }

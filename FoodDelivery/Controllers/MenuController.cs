@@ -29,5 +29,13 @@ namespace FoodDelivery.Controllers
             
             return View("Index", list);
         }
+
+        public async Task<ActionResult> Details(int? id)
+        {
+            var meals = await _menuService.GetMenuMealsAsync();
+            var meal = meals.Find(x => x.Id == id.Value);
+
+            return View(meal);
+        }
     }
 }

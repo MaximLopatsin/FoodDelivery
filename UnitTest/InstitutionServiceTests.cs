@@ -15,8 +15,8 @@ namespace UnitTest
     [TestFixture]
     class InstitutionServiceTests
     {
-        private Mock<IRepository<DAL.Domain.Institution>> _institutionRepositoryMock;
-        private Mock<IRepository<DAL.Domain.Menu>> _menuRepositoryMock;
+        private Mock<IRepository<Institution>> _institutionRepositoryMock;
+        private Mock<IRepository<Menu>> _menuRepositoryMock;
         private IMapper _mapper;
 
         public InstitutionServiceTests()
@@ -32,8 +32,8 @@ namespace UnitTest
         [SetUp]
         public void CreateMocks()
         {
-            _institutionRepositoryMock = new Mock<IRepository<DAL.Domain.Institution>>();
-            _menuRepositoryMock = new Mock<IRepository<DAL.Domain.Menu>>();
+            _institutionRepositoryMock = new Mock<IRepository<Institution>>();
+            _menuRepositoryMock = new Mock<IRepository<Menu>>();
         }
 
         [Test]

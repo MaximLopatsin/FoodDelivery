@@ -5,30 +5,30 @@ namespace FoodDelivery.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Почта")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Login")]
+        [Display(Name = "Логин")]
         public string Login { get; set; }
 
         [Required]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "ConfirmPassword")]
+        [Display(Name = "Подтвердите пароль")]
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Address")]
+        [Display(Name = "Адрес")]
         public string Address { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
     }
 }

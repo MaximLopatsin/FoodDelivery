@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BLL.Dto
 {
@@ -9,6 +10,7 @@ namespace BLL.Dto
 
         public int InstitutionId { get; set; }
 
+        [Display(Name = "Дата создания меню")]
         public DateTime CreationDate { get; set; }
 
         public List<Meal> Meals { get; set; } = new List<Meal>();

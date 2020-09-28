@@ -1,12 +1,19 @@
-﻿namespace BLL.Dto
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BLL.Dto
 {
     public enum DeliveryType
     {
+        [Display(Name = "Новый")]
         New,
+
+        [Display(Name = "В процессе")]
         Processing,
-        SuccessInTime,
-        SuccessOutOfTime,
-        Failed,
+
+        [Display(Name = "Доставлен")]
+        Success,
+
+        [Display(Name = "Отменен")]
         Aborted,
     }
 }

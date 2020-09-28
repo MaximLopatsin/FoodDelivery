@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<BLL.Dto.Menu>
 
 @{
-    ViewBag.Title = "IndexMenu";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h2>IndexMenu</h2>
-
 <p>
-    @Html.ActionLink("Создать новый", "CreateMenu", new { id = (int?)TempData["institutionId"] }, new { id = "CreateMenu" })
+    @Html.ActionLink("Создать новое меню", "CreateMenu", new { id = (int?)TempData["institutionId"] }, new { id = "CreateMenu" })
 </p>
 <table class="table">
     <tr>
@@ -25,8 +22,8 @@
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
-                @Html.ActionLink("Редактировать", "EditMenu", new { id = item.Id })
                 @Html.ActionLink("Подробности", "DetailsMenu", new { id = item.Id })
+                @Html.ActionLink("Удалить", "DeleteMenu", new { id = item.Id })
             </td>
         </tr>
     }

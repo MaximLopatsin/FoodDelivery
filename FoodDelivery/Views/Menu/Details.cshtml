@@ -1,0 +1,48 @@
+﻿@model BLL.Dto.MenuMeal
+
+@{
+    ViewBag.Title = "Детали блюда";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div>
+        <h4>Заказ</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.InstitutionName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.InstitutionName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.InstitutionAddress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.InstitutionAddress)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.InstitutionCity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.InstitutionCity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+        </dl>
+        <br />
+
+    </div>
+<p>
+    @Html.ActionLink("Добавить в корзину", "AddMealForOrder", "Order", new { menuMealId = Model.Id }, null)
+</p>

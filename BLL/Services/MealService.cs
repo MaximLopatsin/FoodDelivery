@@ -41,7 +41,12 @@ namespace BLL.Services
             foreach (var menuMeal in menuMeals)
             {
                 var meal = await _mealRepository.GetByIdAsync(menuMeal.MealId);
-                meals.Add(_mapper.Map<Meal>(meal));
+                var dto = _mapper.Map<Meal>(meal);
+                dto.Price = menuMeal.Price;
+                dto.MenuId = menuMeal.MenuId;
+                dto.Ingredients = await GetIngredientsByMealIdAsync(meal.Id);
+
+                meals.Add(dto);
             }
 
             return meals;
@@ -66,8 +71,10 @@ namespace BLL.Services
         public async Task<Meal> GetMealByIdAsync(int mealId)
         {
             var meal = await _mealRepository.GetByIdAsync(mealId);
+            var dto = _mapper.Map<Meal>(meal);
+            dto.Ingredients = await GetIngredientsByMealIdAsync(mealId);
 
-            return _mapper.Map<Meal>(meal);
+            return dto;
         }
 
         public async Task<Meal> CreateMealAsync(Meal meal, List<Ingredient> ingredients)
@@ -111,11 +118,16 @@ namespace BLL.Services
         {
             var oldMeal = await _mealRepository.GetByIdAsync(meal.Id);
             await _mealRepository.DeleteAsync(oldMeal.Id);
-            var oldMealIngredient = _mealIngredientRepository.GetAll().Where(mealIngredient => mealIngredient.MealId == meal.Id);
+            var oldMealIngredient = _mealIngredientRepository.GetAll().Where(mealIngredient => mealIngredient.MealId == meal.Id).ToList();
+            var oldMenuMeal = _menuMealRepository.GetAll().Where(menuMeal => menuMeal.MealId == meal.Id).ToList();
 
             foreach (var mealIngredient in oldMealIngredient)
             {
                 await _mealIngredientRepository.DeleteAsync(mealIngredient.Id);
+            }
+            foreach (var menuMeal in oldMenuMeal)
+            {
+                await _menuMealRepository.DeleteAsync(menuMeal.Id);
             }
         }
 

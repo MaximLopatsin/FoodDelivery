@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<BLL.Dto.Meal>
 
 @{
-    ViewBag.Title = "IndexMeal";
+    ViewBag.Title = "Блюда";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>IndexMeal</h2>
-
 <p>
-    @Html.ActionLink("Создать новый", "CreateMeal", new { id = (int?)TempData["menuId"] }, new { id = "CreateMeal" })
+    @Html.ActionLink("Создать новое блюдо", "CreateMeal", new { id = (int?)TempData["menuId"] }, new { id = "CreateMeal" })
 </p>
 <table class="table">
     <tr>
@@ -21,19 +19,20 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.ActionLink("Редактировать", "EditMeal", new { id=item.Id })
-            @Html.ActionLink("Подробности", "DetailsMeal", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Подробности", "DetailsMeal", new { id = item.Id })
+                @Html.ActionLink("Удалить", "DeleteMeal", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

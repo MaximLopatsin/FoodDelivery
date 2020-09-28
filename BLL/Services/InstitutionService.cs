@@ -14,8 +14,7 @@ namespace BLL.Services
         private readonly IRepository<DAL.Domain.Menu> _menuRepository;
         private readonly IMapper _mapper;
 
-        public InstitutionService(IRepository<DAL.Domain.Institution> institutionRepository,
-            IRepository<DAL.Domain.Menu> menuRepository, IMapper mapper)
+        public InstitutionService(IRepository<DAL.Domain.Institution> institutionRepository, IRepository<DAL.Domain.Menu> menuRepository, IMapper mapper)
         {
             _institutionRepository = institutionRepository;
             _menuRepository = menuRepository;

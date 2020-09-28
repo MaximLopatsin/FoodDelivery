@@ -51,7 +51,7 @@ namespace FoodDelivery.Controllers
             }
 
             var meals = Session["meals"] as List<MenuMeal>;
-            if(meals.All(a=>a.InstitutionId == meal.InstitutionId))
+            if (meals.All(a => a.InstitutionId == meal.InstitutionId))
             {
                 meals.Add(meal);
             }
