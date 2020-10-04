@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Interfaces;
 using BLL.MapperProfile;
 using BLL.Services;
+using DAL.Domain;
 using DAL.Interfaces;
 using Moq;
 using NUnit.Framework;
@@ -53,9 +56,29 @@ namespace UnitTest
         }
 
         [Test]
-        public void GetIngredientsByMealIdAsync_WhenIdNotExist_ShouldReturnData()
+        public void GetIngredientsByMealIdAsync_WhenIdExist_ShouldReturnData()
         {
             // Arrange
+            var mealIng = new List<MealIngredient>
+            {
+                new MealIngredient{MealId = 1, IngredientId = 1,},
+                new MealIngredient{MealId = 1, IngredientId = 2,},
+                new MealIngredient{MealId = 2, IngredientId = 3,},
+            };
+
+            _mealRepositoryMock.Setup(a => a.GetByIdAsync(It.IsAny<int>()))
+                .Returns((int id) => Task.FromResult(new Meal { Id = id, }));
+
+            _mealIngredientRepositoryMock.Setup(a => a.GetAll()).Returns(mealIng.AsQueryable());
+            _ingredientRepositoryMock.Setup(a => a.GetByIdAsync(It.IsAny<int>()))
+                .Returns((int id) => Task.FromResult(new Ingredient { Id = id, }));
+
+            var expectedResult = new List<Ingredient>
+            {
+                new Ingredient{Id = 1},
+                new Ingredient{Id = 2},
+            };
+
             var service = GetService();
 
             // Act

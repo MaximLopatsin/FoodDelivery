@@ -82,7 +82,7 @@ namespace UnitTest
                 if (id == 1)
                     return Task.FromResult(new Menu { Id = 1 });
 
-                return null;
+                return Task.FromResult((Menu)null);
             });
 
             var service = GetService();
@@ -108,7 +108,7 @@ namespace UnitTest
                 if (id == 1)
                     return Task.FromResult(new Menu { Id = 1 });
 
-                return null;
+                return Task.FromResult((Menu)null);
             });
 
             var service = GetService();
