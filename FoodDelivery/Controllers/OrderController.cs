@@ -14,7 +14,6 @@ namespace FoodDelivery.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IMenuService _menuService;
-        private readonly IInstitutionService _institutionService;
 
         public OrderController(IOrderService orderService, IMenuService menuService)
         {
